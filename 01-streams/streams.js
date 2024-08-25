@@ -10,14 +10,23 @@ console.time("tiempo de respuesta");
 // }
 
 
-
+const read = ()=> {
 for(let i=0; i<= 10; i++) {
-   
+
   const streamEscritura = fs.createReadStream("archivo.txt", {
     encoding: "utf-8"
   });
 
+  streamEscritura.on('data', (chunk) => {
+    console.log(`Parte ${i}: ${chunk}`);
+  });
+
+  streamEscritura.on('end', () => {
+    console.log(`Fin de lectura para la parte ${i}`);
+  });
+
 }
+};
 
 
 
